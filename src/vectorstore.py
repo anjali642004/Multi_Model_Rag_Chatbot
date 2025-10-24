@@ -1,7 +1,7 @@
 # Pinecone removed - using Chroma only for local processing
 from langchain_chroma import Chroma
 from langchain_community.embeddings import OllamaEmbeddings
-from langchain.indexes import SQLRecordManager, index
+from langchain_community.indexes import SQLRecordManager, index
 
 from src.pdf_handler import extract_pdf, load_pdf_directory, split_pdf
 
