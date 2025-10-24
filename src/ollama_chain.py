@@ -1,6 +1,6 @@
 from langchain_community.llms import Ollama
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder
-from langchain.memory import ConversationBufferWindowMemory
+# from langchain_community.memory import ConversationBufferWindowMemory
 from langchain.chains import LLMChain, create_history_aware_retriever, create_retrieval_chain
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain_core.output_parsers import StrOutputParser
@@ -29,18 +29,14 @@ class OllamaChain:
             input_variables=['chat_history', 'input']
         )
 
-        self.memory = ConversationBufferWindowMemory(
-            memory_key='chat_history',
-            chat_memory=chat_memory,
-            k=3,
-            return_messages=True
-        )
+        # Simplified memory approach - using chat_memory directly
+        self.memory = chat_memory
 
         config = load_config()
         llm = Ollama(**config['chat_model'])
         # llm = Ollama(model='llama3:latest', temperature=0.75, num_gpu=1)
 
-        self.llm_chain = LLMChain(prompt=prompt, llm=llm, memory=self.memory, output_parser=StrOutputParser())
+        self.llm_chain = LLMChain(prompt=prompt, llm=llm, output_parser=StrOutputParser())
         # runnable = prompt | llm
 
     def run(self, user_input):
