@@ -4,6 +4,7 @@ langchain-community>=0.0.20
 langchain-core>=0.1.0
 langchain-chroma>=0.1.0
 langchain-text-splitters>=0.0.1
+langchain-ollama>=0.1.0
 gTTS>=2.4.0
 SpeechRecognition>=3.10.0
 transformers>=4.35.0
